@@ -1,5 +1,11 @@
-####UBIQUM MODULE 3, TASK 1: DATA ANALYTICS AND DATA VISUALIZATION
-##We have information on 3 sub-meters and we analyze it 
+####K-MEANS ON ENERGY DATA IN ORDER TO SPOT APPLIANCES BEING USED###
+
+#MAXIMILIÀ GOLDSTON MARÍ
+#INITIAL RELEASE (VERSION 1.0): 15/01/2019
+
+#We have the values of energy consumed/minute by a family for a period of 3 years. We do K-means clustering
+#on the data in order to spot different energy values that are consistent. We then associate each cluster
+#that's found to the appliances that are being used at that moment.
 
 #LOADING THE LIBRARIES####
 library(dplyr) #Used for easily selecting data
