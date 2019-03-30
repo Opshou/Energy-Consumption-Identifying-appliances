@@ -1,7 +1,7 @@
 # ElectricityConsump.clustering
 ## Unsupervised learning project
 
-Measurements of electric power consumption in one household with a one-minute sampling rate over a period of almost 4 years (9 features and 2.075.259 observations - minutes). Different electrical quantities and some sub-metering values are available. We do K-means clustering on the data in order to spot different energy values that are consistent. We then associate each cluster that's found to the appliances that are being used at that moment.
+The data consists of measurements of electric power consumption in one household with a one-minute sampling rate over a period of almost 4 years (9 features and 2.075.259 observations - minutes). Different electrical quantities and some sub-metering values are available. We do K-means clustering on the data in order to spot different energy values that are consistent. We then associate each cluster that's found to the appliances that are being used at that moment.
 
 Results:
 More information on the results in the PDF.
