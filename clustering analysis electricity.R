@@ -512,50 +512,5 @@ ggplot(S2_cluster %>% filter(Date == "2009-12-24"), aes(x = Date_time, y = Sub_m
 ggplot(S3_cluster %>% filter(Date == "2009-12-24"), aes(x = Date_time, y = Sub_metering_3)) + geom_point(aes(color =cluster)) +
   labs(x="Date and time", y="Power consumption", col="# of clusters") +
   scale_color_manual(labels = c("AC", "Water heater", "AC + Water heater", "Appl. off"), values = c("blue", "red", "pink", "green"))
-  
-  
-
-
 ggplot(S1_cluster %>% filter(Date_time >= "2009-12-24 00:00:00", Date_time <= "2009-12-24 07:00:00"), aes(x = Date_time, y = Sub_metering_1)) + geom_point(aes(color =cluster))
 
-
-
-
-
-#IDENTIFYING CONSUME OF APPLIANCES####
-#Through plotting we identify specific appliances and use the period they are used in to find
-#total consumption.
-#Selecting a dishwasher: they make one from "2010-03-14 21:00:00" to "2010-03-14 23:59:00":
-dishwaser <- for_plotting %>% filter(Date_time >= "2010-03-14 21:00:00", Date_time <= "2010-03-14 23:59:00")%>%
-  summarize(consumption = sum(Sub_metering_1))
-#1053Wh ==> 1'053kWh
-
-#Oven:
-oven <- for_plotting %>% filter(Date_time >= "2006-12-19 07:00:00", Date_time <= "2006-12-19 11:00:00")%>%
-  summarize(consumption = sum(Sub_metering_1))
-#839Wh ==> 0'839kWh
-
-#Microwave:
-microwave <- for_plotting %>% filter(Date_time >= "2009-09-14 18:50:00", Date_time <= "2009-09-14 19:10:00")%>%
-  summarize(consumption = sum(Sub_metering_1))
-#416Wh ==> 0'416kWh
-
-
-
-#TRYING A SECOND CLUSTERING####
-cl <- kmeans(cluster_with_datetime[8],4) 
-cl$cluster
-
-cluster_with_datetime$label <- seq_along(cluster_with_datetime$Date_time)
-
-cluster_merge <- as.data.frame(seq_along(cl$cluster))
-colnames(cluster_merge)[1] <-"label"
-
-cluster_merge$cluster <- as.factor(cl$cluster)
-
-#adding the cluster to the original dataset
-cluster_with_datetime <- merge(cluster_with_datetime, cluster_merge, by= "label")
-
-ggplot(cluster_with_datetime, aes(x = Date_time, y = Sub_metering_3)) + geom_point(aes(color =cluster))
-
-plotting_energies("Minute", "2009-12-24 00:00:00", "2009-12-24 23:59:00", "Submeter 2", smaller_than_day = TRUE)
